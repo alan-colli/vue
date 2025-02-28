@@ -1,7 +1,14 @@
 {
   "items": [
-    { "id": 1, "name": "Camiseta", "price": 49.9 },
-    { "id": 2, "name": "Calça Jeans", "price": 99.9 },
-    { "id": 3, "name": "Tênis", "price": 199.9 }
+    {
+      "id": "2",
+      "name": "Jeans",
+      "price": 99.9
+    },
+    {
+      "id": "3",
+      "name": "Calça Moletom",
+      "price": 69.9
+    }
   ]
 }
