@@ -13,10 +13,32 @@ onMounted(async () => {
   items.value = resp.data;
 });
 
-const addItem = async () => {};
+const addItem = async () => {
+  //Post if isEditing is false
+  if (!isEditing.value) {
+    const resp = await axios.post("http://localhost:3000/items", newItem.value);
+    items.value.push(resp.data);
+  }
+
+  //Put if isEditing is true
+  if (isEditing.value) {
+    const resp = await axios.put(
+      `http://localhost:3000/items/${itemIdUpdating.value}`,
+      {
+        ...newItem.value,
+      }
+    );
+    const index = items.value.findIdex(
+      (item) => item.id === itemIdUpdating.value
+    );
+    if (index !== -1) {
+      items.value[index] = { ...newItem.value, id: itemIdUpdating.value };
+    }
+  }
+};
 
 const handleDeleteItem = async (id) => {
-  await axios.delete(`http://localhost:3000/items/${id}`);
+  await axios.delete(`http://localhost:3000/items/${itemIdUpdating.value}`);
   items.value = items.value.filter((item) => item.id !== id);
 };
 
